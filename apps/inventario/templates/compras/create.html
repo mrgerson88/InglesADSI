@@ -1,0 +1,158 @@
+{% extends 'crud/list.html' %}
+{% load static %}
+
+{% block headlist %}
+
+    <!--libreria para realizar el autocomplete -->
+    <link rel="stylesheet" href="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.css' %} ">
+    <script src="{% static 'lib/jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>
+
+    <!--librerias para obtener un buscador con filtrado-->
+    <link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2.min.css' %} ">
+    <link rel="stylesheet" href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %} ">
+    <script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %} "></script>
+    <script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %} "></script>
+
+    <!--librerias para cuadrar fechas-->
+    <script src="{% static 'lib/moment-2.25.3/moment-with-locales.js' %} "></script>
+    <script src="{% static 'lib/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.js' %} "></script>
+    <link rel="stylesheet" href="{% static 'lib/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css' %} ">
+
+    <!--libreria para hacer spin-->
+    <link rel="stylesheet" href="{% static 'lib/bootstrap-touchspin-4.3.0/jquery.bootstrap-touchspin.css' %} ">
+    <script src="{% static 'lib/bootstrap-touchspin-4.3.0/jquery.bootstrap-touchspin.js' %} "></script>
+    <script src="{% static '/compras/js/form.js' %} "></script>
+{% endblock headlist %}
+
+
+{% block contentprincipal %}
+<form method="POST" id="form-guardar-compra">
+    <div class="card card-secondary">
+        <!--ENCABEZADO DE TABLA-->
+        <div class="card-header">
+            <h3 class="card-title">
+                {% if action == 'add' %}
+                    <i class="fas fa-plus"></i>
+                    {{title}}
+                {% else %}
+                    <i class="fas fa-edit"></i>
+                    {{title}}
+                {% endif %}
+            </h3>
+        </div>
+        <!--DATOS DEL PRODUCTO Y LA COMPRA-->
+        <div class="card-body">
+            <div class="row">
+                <!-- PROVEEDOR Y FECHA DE COMPRA-->
+                <div class="col-lg-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-money-bill-wave"></i>
+                                Purchase details                              
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Select date: </label>
+                                        {{form.fecha}}
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Provider:</label>
+                                        {{form.proveedor}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--DETALLE DE INSUMOS-->
+                <div class="col-lg-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-boxes"></i>
+                                Supplies detail                              
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Search supplies</label>
+                                <div class="input-group">
+                                    <input type="text" 
+                                        class="form-control" placeholder="Search Supplies..." 
+                                        autocomplete="off" name="search">
+                                    <span class="input-group-append">
+                                        <button id="limpiarBusqueda" type="button" class="btn btn-danger btn-flat">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-end">
+                                <a class="btn btn-danger btn-xs" style="color:white" id="btnBorrarDetalle">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Vaciar Lista
+                                </a>
+                            </div>
+                            <hr>
+                            <table class="table table-bordered" id="table-insumos">
+                                <thead>
+                                    <tr>
+                                        <th>Delete</th>
+                                        <th>Supply</th>
+                                        <th>Measurement Unit</th>
+                                        <th>Purchase price</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--TOTALES-->
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Subtotal:</label>
+                        {{form.subtotal}}
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>VAT:</label>
+                        {{form.iva}}
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label>Total:</label>
+                        {{form.total}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--BOTON DE GUARDAR COMPRA-->
+        <div class="card-footer d-flex justify-content-end">
+            <input type="hidden" name="action" value="{{ action }}">
+            <button type="submit" class="btn btn-primary" style="color:white" id="btn-new">
+                Register Purchase
+                <i class="fas fa-plus-circle"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<script>
+    {% if action == 'edit' %}
+        compras.items.insumos = {{ detalle | safe }}
+        compras.list()
+    {% endif %}
+</script>
+{% endblock contentprincipal %}
