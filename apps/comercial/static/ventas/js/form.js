@@ -181,12 +181,12 @@ $(function () {
     $('#btnBorrarDetalle').on('click',function () {
             if(ventas.items.productos.length === 0)return false
             Swal.fire({
-                title: 'Estas seguro de eliminar el detalle?',
+                title: 'Are you sure to remove the detail?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Si!',
+                confirmButtonText: 'Yes!',
                 cancelButtonText: 'No!'
             }).then((result) => {
                 if (result.value) {
@@ -208,7 +208,7 @@ $(function () {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Debes agregar almenos un producto al detalle!',
+                text: 'You must add at least one product in detail!',
             })
             return false
         }
@@ -231,8 +231,8 @@ $(function () {
             dataType : 'JSON'
         }).done(function (data) {
             Swal.fire({
-                title: 'Registro Guardado exitosamente',
-                text: "Listo !!",
+                title: 'Successful Registration',
+                text: "Ready !!",
                 icon: 'success',
                 showCancelButton: false,
                 confirmButtonColor: '#3085d6',

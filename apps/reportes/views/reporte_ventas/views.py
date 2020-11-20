@@ -37,7 +37,7 @@ class ReporteVentaView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = 'Reporte de ventas'
+        context["title"] = 'Sales Report'
         context["form"] = ReporteVentaForm()
         return context
     

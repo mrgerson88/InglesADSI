@@ -59,7 +59,7 @@ class InsumosForm(ModelForm):
         model = Insumos 
         fields = '__all__'
         labels = {
-            'nombre' : 'Supplie Name: ',
+            'nombre' : 'Supply Name: ',
             'cantidad': 'Quantity: ',
             'unidad_medida': 'Measurement Unit: ',
         }

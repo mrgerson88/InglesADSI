@@ -64,7 +64,7 @@ class VentasCreateView(LoginRequiredMixin,CreateView):
     """retorna este contexto cuando se pida la vista por get"""
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Registro de Venta'
+        context['title'] = 'Registration'
         context['entity']  = 'Ventas'
         context['list_url'] = self.success_url
         context['action'] = 'add'
@@ -170,7 +170,7 @@ class VentasListView(LoginRequiredMixin,ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Listado de ventas'
+        context['title'] = 'Sales list'
         context['url_create'] = reverse_lazy('venta_crear')
         return context
     
@@ -196,7 +196,7 @@ class CotizacionesListView(LoginRequiredMixin,ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Listado de Cotizacion'
+        context['title'] = 'List of Quotes'
         context['url_create'] = reverse_lazy('venta_crear')
         return context
 
