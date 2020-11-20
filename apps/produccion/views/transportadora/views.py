@@ -52,7 +52,7 @@ class TransportadoraCreateView(LoginRequiredMixin,CreateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Registrar Transportadora'
+        context['title'] = 'Register Carrier'
         if 'form' not in context:
             context['form'] = self.form_class(self.request.GET)
         if 'form2' not in context:

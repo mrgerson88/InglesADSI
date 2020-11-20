@@ -80,7 +80,7 @@
             <img src="/media/{{request.user.image}}" class="img-circle elevation-2" alt="Img opc">
         </div>
         <div class="info">
-            <a href="#" class="d-block">User Name</a>
+            <a href="#" class="d-block">{{request.user.username|capfirst}}</a>
         </div>
         </div>
             {% include 'base/navegacion.html' %}

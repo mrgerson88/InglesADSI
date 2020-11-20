@@ -5,13 +5,13 @@
 <form id="form_eliminar" method="POST">
     {% csrf_token %}
     <div class="jumbotron">
-        <h3>Esta seguro de eliminar al registro?</h3>
-        <button class="btn btn-outline-danger" type="submit">Si, Eliminar</button>
+        <h3>Are you sure you want to delete the registry?</h3>
+        <button class="btn btn-outline-danger" type="submit">Yes, delete</button>
         <a class="btn btn-info" 
         {% if object.estado == 'cotizacion' %}
-            href="/comercial/cotizaciones/lista">Cancelar</a>
+            href="/comercial/cotizaciones/lista">Cancel</a>
         {% else %}
-            href="/comercial/ventas/lista">Cancelar</a>
+            href="/comercial/ventas/lista">Cancel</a>
         {% endif %} 
     </div>
 </form>
@@ -27,11 +27,11 @@
                 redireccion = '/comercial/ventas/lista'
             }
             Swal.fire({
-            title: 'Perfecto !',
-            text: "Registro borrado exitosamente",
+            title: 'Perfect !',
+            text: "Record successfully deleted",
             icon: 'success',
             confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Aceptar'
+            confirmButtonText: 'Accept'
             })
             .then((result) => {
                 if (result.value) {

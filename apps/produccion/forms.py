@@ -114,7 +114,7 @@ class TelefonoTransportadoraForm(ModelForm):
         model = TelefonoTransportadora
         fields = '__all__'
         labels = {
-            'numero_telefono':'Numero'
+            'numero_telefono':'Number'
         }
         widgets = {
             'numero_telefono' : TextInput(attrs={'class':'form-control'})

@@ -11,7 +11,7 @@
 {% block contentprincipal %}
 <form method="post" enctype="multipart/form-data">
     <div class="card">
-        <div class="card-header">Registrar Usuario</div>
+        <div class="card-header">User Registration</div>
         <div class="card-body">
             {% csrf_token %}
             <div class="row">
@@ -29,7 +29,7 @@
         <input type="hidden" name="usuario_id" value ="{{object.pk}}" >
         <div class="card-footer">
             <button type="submit" class="btn btn-primary btnTest" id="btn-new">
-                Guardar Registro
+                Save Register
                 <i class="fas fa-plus-circle"></i>
             </button>
         </div>
