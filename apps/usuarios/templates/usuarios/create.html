@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block head %}
+    <link href="{% static 'lib/select2-4.0.13/css/select2.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'lib/select2-4.0.13/css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
+    <script src="{% static 'lib/select2-4.0.13/js/select2.min.js' %}"></script>
+    <script src="{% static 'lib/select2-4.0.13/js/i18n/es.js' %}"></script>
+    <script src="{% static 'user/js/form.js' %}"></script>
+{% endblock %}
+{% block contentprincipal %}
+<form method="post" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-header">User Registration</div>
+        <div class="card-body">
+            {% csrf_token %}
+            <div class="row">
+            {% for campo in form.visible_fields %}
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label>{{ campo.label }}</label>
+                            {{campo|add_class:'form-control'}}
+                        </div>
+                    </div>
+            {% endfor %}
+            </div>            
+        </div>
+        <input type="hidden" name="action" value="{{ action }}">
+        <input type="hidden" name="usuario_id" value ="{{object.pk}}" >
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary btnTest" id="btn-new">
+                Save Register
+                <i class="fas fa-plus-circle"></i>
+            </button>
+        </div>
+    </div>
+</form>
+    
+{% endblock contentprincipal %}
